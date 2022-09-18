@@ -16,7 +16,7 @@
           <div class="container d-flex justify-content-between">
             <a href="#" class="navbar-brand d-flex align-items-center">
 
-              <strong>Supa</strong>
+              <strong>Mystical</strong>
             </a>
             <button
               class="navbar-toggler"
@@ -36,7 +36,7 @@
       <main role="main">
         <section class="jumbotron text-center">
           <div class="container">
-            <h1 class="jumbotron-heading">Supa Shop</h1>
+            <h1 class="jumbotron-heading">Secret Shop</h1>
           </div>
         </section>
 
