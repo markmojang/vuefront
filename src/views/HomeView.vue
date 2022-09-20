@@ -120,5 +120,6 @@ export default {
   mounted() {
     this.getProduct();
   },
-};
+};//
 </script>
+
