@@ -61,7 +61,7 @@ export default {
                     detail: this.product.detail,
                 }
 
-                const res = await axios.post("https://dashboard.heroku.com/apps/v-backend-shop/product", body)
+                const res = await axios.post("https://v-backend-shop.herokuapp.com/product", body)
                 console.log(res);
                 this.$router.push("/")  // เปลี่ยนหน้า
             }
