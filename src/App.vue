@@ -1,21 +1,29 @@
 <template>
   <div id="app">
-    <nav>
+    <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/profile">Profile</router-link> |
-      <router-link to="/addproduct">AddProduct</router-link>
-    </nav>
-    <router-view/>
+      <router-link to="/addproduct">AddProduct</router-link> |
+      <router-link to="/orders">Orders</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
 
 <script>
-
-</script>
+  import { mapActions } from 'vuex'
+  export default {
+    methods: {
+      ...mapActions({ initializeCart: "cart/initializeCart" })
+    },
+    created() {
+      this.initializeCart(this.$store)
+    }
+  }
+  </script>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,16 +32,16 @@
   color: #2c3e50;
 }
 
-nav {
+#nav {
   padding: 30px;
 }
 
-nav a {
+#nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
+#nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>

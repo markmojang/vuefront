@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <body>
       <header>
         <div class="collapse bg-dark" id="navbarHeader">
@@ -15,20 +16,10 @@
         <div class="navbar navbar-dark bg-dark box-shadow">
           <div class="container d-flex justify-content-between">
             <a href="#" class="navbar-brand d-flex align-items-center">
-
-              <strong>Mystical</strong>
+              <strong>Secret</strong>
             </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarHeader"
-              aria-controls="navbarHeader"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
+
+          <Cart/>
           </div>
         </div>
       </header>
@@ -43,83 +34,61 @@
         <div class="album py-5 bg-light">
           <div class="container">
             <div class="row">
-              <div class="col-md-4" v-for="(product) in products" :key="product._id">
+              <div class="col-md-4" v-for="product in products" :key="product._id">
                 <div class="card mb-4 box-shadow">
-                  <img
-                    class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                    alt="Card image cap"
-                    :src = "product.image" width="500" height="300"/>
+                  <img class="card-img-top" :src="product.image" width="500" height="300"/>
                   <div class="card-body">
-                    <h2 class="card-text">{{product.name}}</h2>
+                    <h3 class="card-text">{{ product.name }}</h3>
                     <p class="card-text">
-                      {{product.detail}} <br>
-                      <span class="text-danger">{{product.price}}&nbsp;Baht</span>
+                      {{ product.detail }} <br />
+                      <span class="text-danger">{{ product.price }} บาท</span>
                     </p>
-                    <div class="">
-                      <div class="btn-group text-center">
-                        <button
-                          type="button"
-                          class="btn btn-outline-secondary"
-                        >
-                          Buy Now!!
-                        </button>
-                        <!-- <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button> -->
-                      </div>
+                    <div class="btn-group text-center">
+                      <button type="button" class="btn btn-outline-success" @click="handleAddProduct(product)">
+                        Buy now
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </main>
 
-      <footer class="text-muted">
-        <div class="container">
-          <p class="float-right">
-            <a href="#">Back to top</a>
-          </p>
-          <p>
-            Album example is &copy; Bootstrap, but please download and customize
-            it for yourself!
-          </p>
-          <p>
-            New to Bootstrap? <a href="../../">Visit the homepage</a> or read
-            our <a href="../../getting-started/">getting started guide</a>.
-          </p>
-        </div>
-      </footer>
     </body>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import axios from "axios";
+import Cart from "../components/Cart.vue";
 export default {
-  data() {
-    return {
-      products : ""
-
-    }
-  },
-  methods :{
-    async getProduct() {
-      const response = await axios.get("https://v-backend-shop.herokuapp.com/product");
-      console.log(response);
-      this.products = response.data
+    data() {
+        return {
+            products: "",
+        };
     },
-  },
-
-  mounted() {
-    this.getProduct();
-  },
-};//
+    computed: {},
+    methods: {
+        ...mapActions({
+            clearCartData: "cart/clearCartData",
+        }),
+        ...mapMutations({ addProduct: "cart/addProduct" }),
+        async getProduct() {
+            const response = await axios.get("https://v-backend-shop.herokuapp.com/product");
+            console.log(response);
+            this.products = response.data;
+        },
+        handleAddProduct(product) {
+            console.log(product);
+            this.addProduct(product);
+        }
+    },
+    mounted() {
+        this.getProduct();
+    },
+    components: { Cart }
+};
 </script>
-
