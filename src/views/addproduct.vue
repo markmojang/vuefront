@@ -53,8 +53,7 @@ export default {
         },
         async handleAddProduct() {
             {
-                const product = new FormData();
-
+                var product = new FormData();
                 product.append("name", this.product.name);
                 product.append("detail", this.product.detail);
                 product.append("imageUpload", this.product.image);

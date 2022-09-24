@@ -43,7 +43,7 @@
         <div class="album py-5 bg-light">
           <div class="container">
             <div class="row">
-              <div class="col-md-4" v-for="(product) in products":key="product._id">
+              <div class="col-md-4" v-for="(product) in products" :key="product._id">
                 <div class="card mb-4 box-shadow">
                   <img
                     class="card-img-top"
