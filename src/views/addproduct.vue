@@ -58,7 +58,7 @@ export default {
                 product.append("detail", this.product.detail);
                 product.append("imageUpload", this.product.image);
                 product.append("price", this.product.price);
-                await axios.post("https://v-backend-shop.herokuapp.com/product", product)
+                await axios.post("https://v-backend-shop.herokuapp.com/product", {product})
             }
         },
     },
