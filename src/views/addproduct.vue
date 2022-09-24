@@ -40,7 +40,7 @@ export default {
         return {
             product: {
                 name: null,
-                detail: "",
+                detail: null,
                 image: null,
                 price: null,
             },
